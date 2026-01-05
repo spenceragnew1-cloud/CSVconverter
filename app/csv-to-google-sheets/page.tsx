@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     description:
       "Import CSV files directly into Google Sheets. Coming soon. Try our CSV to Excel converter in the meantime.",
     type: "website",
+    url: "https://formatmyfiles.com/csv-to-google-sheets",
   },
   twitter: {
     card: "summary",

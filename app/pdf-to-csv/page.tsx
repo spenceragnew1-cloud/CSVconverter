@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     description:
       "Extract data from PDF files and convert to CSV format. Coming soon. Try our CSV to Excel converter in the meantime.",
     type: "website",
+    url: "https://formatmyfiles.com/pdf-to-csv",
   },
   twitter: {
     card: "summary",

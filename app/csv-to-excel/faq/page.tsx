@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     description:
       "Learn how to convert CSV to Excel, fix delimiter problems, and avoid formatting errors. Private in-browser conversion.",
     type: "website",
+    url: "https://formatmyfiles.com/csv-to-excel/faq",
   },
   twitter: {
     card: "summary",

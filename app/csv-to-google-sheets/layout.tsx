@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: {
-    canonical: "https://yourdomain.com/csv-to-google-sheets",
+    canonical: "https://formatmyfiles.com/csv-to-google-sheets",
   },
 };
 

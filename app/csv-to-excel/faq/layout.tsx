@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   alternates: {
-    canonical: "https://yourdomain.com/csv-to-excel/faq",
+    canonical: "https://formatmyfiles.com/csv-to-excel/faq",
   },
 };
 

@@ -10,6 +10,7 @@ export const metadata: Metadata = {
     description:
       "Convert CSV files to JSON format for APIs and web applications. Coming soon. Try our CSV to Excel converter in the meantime.",
     type: "website",
+    url: "https://formatmyfiles.com/csv-to-json",
   },
   twitter: {
     card: "summary",
