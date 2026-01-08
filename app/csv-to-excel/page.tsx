@@ -354,6 +354,18 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
           </div>
         )}
 
+        {/* Convert Button */}
+        {state === "ready" && (
+          <div className="text-center mb-6">
+            <button
+              onClick={convertToExcel}
+              className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-colors"
+            >
+              Convert to Excel
+            </button>
+          </div>
+        )}
+
         {/* Preview */}
         {state === "ready" && previewRows.length > 0 && (
           <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
@@ -394,18 +406,6 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
                 </tbody>
               </table>
             </div>
-          </div>
-        )}
-
-        {/* Convert Button */}
-        {state === "ready" && (
-          <div className="text-center mb-6">
-            <button
-              onClick={convertToExcel}
-              className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-colors"
-            >
-              Convert to Excel
-            </button>
           </div>
         )}
 
