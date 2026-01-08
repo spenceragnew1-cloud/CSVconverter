@@ -2,6 +2,7 @@
 
 import { useState, useRef, DragEvent } from "react";
 import * as XLSX from "xlsx";
+import { trackEvent } from "@/lib/ga";
 
 const MAX_FILE_SIZE_MB = 10;
 const MAX_ROWS = 50000;
@@ -197,6 +198,15 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
       link.href = url;
       link.download = `${parsedData.fileName}.xlsx`;
       document.body.appendChild(link);
+      
+      // Track successful conversion event
+      trackEvent("csv_to_excel_success", {
+        page_path: window.location.pathname,
+        file_size_bytes: parsedData.fileSize,
+        rows: parsedData.rowCount,
+        delimiter: parsedData.delimiter,
+      });
+      
       link.click();
       document.body.removeChild(link);
       URL.revokeObjectURL(url);
