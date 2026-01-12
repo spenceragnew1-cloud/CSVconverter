@@ -219,9 +219,16 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
         format: pageSize,
       });
 
-      // Calculate page width for better column sizing
+      // Calculate equal column widths for better distribution
       const pageWidth = doc.internal.pageSize.getWidth();
       const availableWidth = pageWidth - (margin * 2);
+      const columnWidth = availableWidth / numColumns;
+
+      // Create column styles for equal width distribution
+      const columnStyles: Record<number, { cellWidth: number }> = {};
+      for (let i = 0; i < numColumns; i++) {
+        columnStyles[i] = { cellWidth: columnWidth };
+      }
 
       autoTable(doc, {
         head: hasHeader ? [headers] : [],
@@ -230,7 +237,7 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
           fontSize: finalFontSize, 
           cellPadding: cellPadding,
           overflow: 'linebreak',
-          cellWidth: 'auto',
+          cellWidth: columnWidth,
           minCellHeight: finalFontSize + 2,
         },
         headStyles: { 
@@ -246,11 +253,24 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
           fontSize: finalFontSize,
           cellPadding: cellPadding,
         },
+        columnStyles: columnStyles,
         alternateRowStyles: { fillColor: [245, 245, 245] },
         margin: { top: 20, left: margin, right: margin },
         tableWidth: 'wrap',
         showHead: 'everyPage',
         didParseCell: function(data) {
+          // More aggressive wrapping for headers (first row)
+          if (data.row.index === 0 && data.cell.text) {
+            const headerMaxLength = isExtremelyWideTable ? 20 : isVeryWideTable ? 25 : 30;
+            if (Array.isArray(data.cell.text) && data.cell.text.length > 0) {
+              data.cell.text = data.cell.text.map((text: string) => {
+                if (text.length > headerMaxLength) {
+                  return text.match(new RegExp(`.{1,${headerMaxLength}}`, 'g'))?.join(' ') || text;
+                }
+                return text;
+              });
+            }
+          }
           // Wrap long text in cells - more aggressive for wide tables
           const maxLength = isExtremelyWideTable ? 25 : isVeryWideTable ? 30 : 40;
           if (data.cell.text && Array.isArray(data.cell.text) && data.cell.text.length > 0) {
