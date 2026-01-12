@@ -192,11 +192,26 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
         return normalizedRow.slice(0, numColumns);
       });
 
-      // Auto-adjust for wide tables
-      const isWideTable = numColumns > 6;
+      // Auto-adjust for wide tables with progressive scaling
+      const isWideTable = numColumns > 4;
+      const isVeryWideTable = numColumns > 8;
+      const isExtremelyWideTable = numColumns > 12;
+      
       const finalOrientation = isWideTable ? "landscape" : orientation;
-      const finalFontSize = isWideTable ? 7 : 9;
-      const margin = 10;
+      
+      // Progressive font size reduction for wider tables
+      let finalFontSize = 9;
+      if (isExtremelyWideTable) {
+        finalFontSize = 5;
+      } else if (isVeryWideTable) {
+        finalFontSize = 6;
+      } else if (isWideTable) {
+        finalFontSize = 7;
+      }
+      
+      // Progressive margin and padding reduction
+      const margin = isExtremelyWideTable ? 5 : isVeryWideTable ? 7 : 10;
+      const cellPadding = isExtremelyWideTable ? 1 : isVeryWideTable ? 1.5 : 2;
 
       const doc = new jsPDF({
         orientation: finalOrientation as "portrait" | "landscape",
@@ -204,14 +219,19 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
         format: pageSize,
       });
 
+      // Calculate page width for better column sizing
+      const pageWidth = doc.internal.pageSize.getWidth();
+      const availableWidth = pageWidth - (margin * 2);
+
       autoTable(doc, {
         head: hasHeader ? [headers] : [],
         body: normalizedData,
         styles: { 
           fontSize: finalFontSize, 
-          cellPadding: 2,
+          cellPadding: cellPadding,
           overflow: 'linebreak',
           cellWidth: 'auto',
+          minCellHeight: finalFontSize + 2,
         },
         headStyles: { 
           fillColor: [66, 139, 202], 
@@ -219,21 +239,25 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
           fontStyle: "bold",
           halign: 'left',
           fontSize: finalFontSize,
+          cellPadding: cellPadding,
         },
         bodyStyles: {
           halign: 'left',
           fontSize: finalFontSize,
+          cellPadding: cellPadding,
         },
         alternateRowStyles: { fillColor: [245, 245, 245] },
         margin: { top: 20, left: margin, right: margin },
         tableWidth: 'wrap',
+        showHead: 'everyPage',
         didParseCell: function(data) {
-          // Wrap long text in cells
+          // Wrap long text in cells - more aggressive for wide tables
+          const maxLength = isExtremelyWideTable ? 25 : isVeryWideTable ? 30 : 40;
           if (data.cell.text && Array.isArray(data.cell.text) && data.cell.text.length > 0) {
             data.cell.text = data.cell.text.map((text: string) => {
               // Split very long words if needed
-              if (text.length > 40) {
-                return text.match(/.{1,40}/g)?.join(' ') || text;
+              if (text.length > maxLength) {
+                return text.match(new RegExp(`.{1,${maxLength}}`, 'g'))?.join(' ') || text;
               }
               return text;
             });
