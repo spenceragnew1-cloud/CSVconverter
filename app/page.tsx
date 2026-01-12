@@ -36,12 +36,30 @@ export default function Home() {
           </Link>
         </div>
 
-        {/* Other Converters Section */}
-        <div className="max-w-4xl mx-auto">
+        {/* All Converters Section */}
+        <div className="max-w-6xl mx-auto">
           <h2 className="text-2xl font-semibold text-gray-900 mb-6 text-center">
-            Other Converters
+            All File Converters
           </h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <Link
+              href="/csv-to-excel"
+              className="block p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow border border-gray-200"
+            >
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                CSV to Excel
+              </h3>
+              <p className="text-gray-600">Convert CSV files to Excel (.xlsx) format</p>
+            </Link>
+            <Link
+              href="/csv-to-json"
+              className="block p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow border border-gray-200"
+            >
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">
+                CSV to JSON
+              </h3>
+              <p className="text-gray-600">Convert CSV data to JSON format for APIs</p>
+            </Link>
             <Link
               href="/csv-to-pdf"
               className="block p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow border border-gray-200"
@@ -68,15 +86,6 @@ export default function Home() {
                 CSV to Google Sheets
               </h3>
               <p className="text-gray-600">Import CSV into Google Sheets</p>
-            </Link>
-            <Link
-              href="/csv-to-json"
-              className="block p-6 bg-white rounded-lg shadow hover:shadow-md transition-shadow border border-gray-200"
-            >
-              <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                CSV to JSON
-              </h3>
-              <p className="text-gray-600">Convert CSV data to JSON format</p>
             </Link>
           </div>
         </div>
