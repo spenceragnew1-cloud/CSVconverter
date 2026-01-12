@@ -197,8 +197,19 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
       const response = await fetch("/api/google-sheets/auth");
       const data = await response.json();
 
-      if (!response.ok || !data.authUrl) {
-        setError("Failed to initiate Google authorization. Please try again.");
+      if (!response.ok) {
+        const errorMsg = data.error || "Failed to initiate Google authorization";
+        setError(
+          errorMsg === "Google Client ID not configured"
+            ? "Google Sheets integration is not configured. Please contact the administrator or check your environment variables."
+            : `${errorMsg}. Please try again.`
+        );
+        setState("error");
+        return;
+      }
+
+      if (!data.authUrl) {
+        setError("Failed to get authorization URL. Please try again.");
         setState("error");
         return;
       }
@@ -206,7 +217,8 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
       // Redirect to Google OAuth
       window.location.href = data.authUrl;
     } catch (err) {
-      setError("Failed to connect to Google. Please try again.");
+      console.error("OAuth initiation error:", err);
+      setError("Failed to connect to Google. Please check your internet connection and try again.");
       setState("error");
     }
   };
