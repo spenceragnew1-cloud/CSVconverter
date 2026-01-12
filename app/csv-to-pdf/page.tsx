@@ -175,12 +175,6 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
       const { default: jsPDF } = await import("jspdf");
       const autoTable = (await import("jspdf-autotable")).default;
 
-      const doc = new jsPDF({
-        orientation: orientation,
-        unit: "mm",
-        format: pageSize,
-      });
-
       const dataToUse = hasHeader
         ? parsedData.rows.slice(1)
         : parsedData.rows;
@@ -198,36 +192,48 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
         return normalizedRow.slice(0, numColumns);
       });
 
-      // Calculate margins
+      // Auto-adjust for wide tables
+      const isWideTable = numColumns > 6;
+      const finalOrientation = isWideTable ? "landscape" : orientation;
+      const finalFontSize = isWideTable ? 7 : 9;
       const margin = 10;
+
+      const doc = new jsPDF({
+        orientation: finalOrientation as "portrait" | "landscape",
+        unit: "mm",
+        format: pageSize,
+      });
 
       autoTable(doc, {
         head: hasHeader ? [headers] : [],
         body: normalizedData,
         styles: { 
-          fontSize: 9, 
-          cellPadding: 3,
+          fontSize: finalFontSize, 
+          cellPadding: 2,
           overflow: 'linebreak',
-          cellWidth: 'wrap',
+          cellWidth: 'auto',
         },
         headStyles: { 
           fillColor: [66, 139, 202], 
           textColor: 255, 
           fontStyle: "bold",
           halign: 'left',
+          fontSize: finalFontSize,
         },
         bodyStyles: {
           halign: 'left',
+          fontSize: finalFontSize,
         },
         alternateRowStyles: { fillColor: [245, 245, 245] },
         margin: { top: 20, left: margin, right: margin },
+        tableWidth: 'wrap',
         didParseCell: function(data) {
           // Wrap long text in cells
           if (data.cell.text && Array.isArray(data.cell.text) && data.cell.text.length > 0) {
             data.cell.text = data.cell.text.map((text: string) => {
               // Split very long words if needed
-              if (text.length > 50) {
-                return text.match(/.{1,50}/g)?.join(' ') || text;
+              if (text.length > 40) {
+                return text.match(/.{1,40}/g)?.join(' ') || text;
               }
               return text;
             });
@@ -247,7 +253,7 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
         file_size_bytes: parsedData.fileSize,
         rows: parsedData.rowCount,
         page_size: pageSize,
-        orientation: orientation,
+        orientation: finalOrientation,
       });
 
       link.click();
