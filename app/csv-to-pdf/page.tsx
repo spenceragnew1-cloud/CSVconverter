@@ -186,16 +186,53 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
         : parsedData.rows;
       const headers = hasHeader ? parsedData.rows[0] : [];
 
-      // Convert rows to array format for autoTable
-      const tableData = dataToUse.map((row) => row);
+      // Ensure all rows have the same number of columns as headers
+      const numColumns = headers.length || (dataToUse[0]?.length || 0);
+      const normalizedData = dataToUse.map((row) => {
+        const normalizedRow = [...row];
+        // Pad with empty strings if row is shorter than headers
+        while (normalizedRow.length < numColumns) {
+          normalizedRow.push("");
+        }
+        // Truncate if row is longer than headers
+        return normalizedRow.slice(0, numColumns);
+      });
+
+      // Calculate margins
+      const margin = 10;
 
       autoTable(doc, {
         head: hasHeader ? [headers] : [],
-        body: tableData,
-        styles: { fontSize: 9, cellPadding: 3 },
-        headStyles: { fillColor: [66, 139, 202], textColor: 255, fontStyle: "bold" },
+        body: normalizedData,
+        styles: { 
+          fontSize: 9, 
+          cellPadding: 3,
+          overflow: 'linebreak',
+          cellWidth: 'wrap',
+        },
+        headStyles: { 
+          fillColor: [66, 139, 202], 
+          textColor: 255, 
+          fontStyle: "bold",
+          halign: 'left',
+        },
+        bodyStyles: {
+          halign: 'left',
+        },
         alternateRowStyles: { fillColor: [245, 245, 245] },
-        margin: { top: 20 },
+        margin: { top: 20, left: margin, right: margin },
+        didParseCell: function(data) {
+          // Wrap long text in cells
+          if (data.cell.text && Array.isArray(data.cell.text) && data.cell.text.length > 0) {
+            data.cell.text = data.cell.text.map((text: string) => {
+              // Split very long words if needed
+              if (text.length > 50) {
+                return text.match(/.{1,50}/g)?.join(' ') || text;
+              }
+              return text;
+            });
+          }
+        },
       });
 
       const pdfBlob = doc.output("blob");
