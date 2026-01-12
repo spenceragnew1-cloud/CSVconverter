@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useRef, DragEvent } from "react";
+import { useState, useRef, DragEvent, useEffect } from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { trackEvent } from "@/lib/ga";
 
 const MAX_FILE_SIZE_MB = 10;
@@ -18,6 +19,7 @@ interface ParsedData {
 }
 
 export default function CSVToGoogleSheetsPage() {
+  const searchParams = useSearchParams();
   const [state, setState] = useState<ParseState>("idle");
   const [parsedData, setParsedData] = useState<ParsedData | null>(null);
   const [error, setError] = useState<string>("");
@@ -25,7 +27,35 @@ export default function CSVToGoogleSheetsPage() {
   const [autoDetectDelimiter, setAutoDetectDelimiter] = useState(true);
   const [delimiter, setDelimiter] = useState<string>(",");
   const [sheetName, setSheetName] = useState<string>("Sheet1");
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+  const [spreadsheetUrl, setSpreadsheetUrl] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Handle OAuth callback
+  useEffect(() => {
+    const token = searchParams.get("token");
+    const errorParam = searchParams.get("error");
+
+    if (errorParam) {
+      setError(
+        errorParam === "access_denied"
+          ? "Authorization was denied. Please try again and grant the necessary permissions."
+          : `Authorization error: ${errorParam}`
+      );
+      setState("error");
+      // Clean URL
+      window.history.replaceState({}, "", "/csv-to-google-sheets");
+    } else if (token) {
+      setAccessToken(token);
+      // Clean URL
+      window.history.replaceState({}, "", "/csv-to-google-sheets");
+      // If we have data ready, automatically upload
+      if (parsedData) {
+        uploadToGoogleSheets(token);
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams]);
 
   // Sample CSV for testing
   const sampleCSV = `Name,Age,City,Email
@@ -162,32 +192,80 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
     handleFile(file);
   };
 
-  const uploadToGoogleSheets = async () => {
+  const initiateOAuth = async () => {
+    try {
+      const response = await fetch("/api/google-sheets/auth");
+      const data = await response.json();
+
+      if (!response.ok || !data.authUrl) {
+        setError("Failed to initiate Google authorization. Please try again.");
+        setState("error");
+        return;
+      }
+
+      // Redirect to Google OAuth
+      window.location.href = data.authUrl;
+    } catch (err) {
+      setError("Failed to connect to Google. Please try again.");
+      setState("error");
+    }
+  };
+
+  const uploadToGoogleSheets = async (token?: string) => {
     if (!parsedData) return;
 
+    const tokenToUse = token || accessToken;
+
+    if (!tokenToUse) {
+      // Need to authenticate first
+      await initiateOAuth();
+      return;
+    }
+
     setState("converting");
+    setError("");
 
     try {
-      // Note: Google Sheets API integration requires OAuth setup
-      // This is a placeholder structure - actual Google Sheets API integration would go here
-      setError("Google Sheets integration is currently being implemented. Please check back soon!");
-      setState("error");
-      
-      // TODO: Implement Google Sheets API integration
-      // 1. OAuth authentication flow
-      // 2. Create or select spreadsheet
-      // 3. Upload data to Google Sheets
-      // 4. Return spreadsheet URL
-      
-      // trackEvent("csv_to_google_sheets_success", {
-      //   page_path: window.location.pathname,
-      //   file_size_bytes: parsedData.fileSize,
-      //   rows: parsedData.rowCount,
-      //   sheet_name: sheetName,
-      // });
-      
-    } catch (err) {
-      setError("Failed to upload to Google Sheets. Please try again.");
+      // Prepare data for upload
+      const dataToUpload = parsedData.rows;
+
+      const response = await fetch("/api/google-sheets/upload", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          accessToken: tokenToUse,
+          data: dataToUpload,
+          sheetName: sheetName || "Sheet1",
+          fileName: parsedData.fileName || "CSV Import",
+        }),
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        throw new Error(result.error || "Failed to upload to Google Sheets");
+      }
+
+      if (result.success && result.spreadsheetUrl) {
+        setSpreadsheetUrl(result.spreadsheetUrl);
+        setState("done");
+
+        trackEvent("csv_to_google_sheets_success", {
+          page_path: window.location.pathname,
+          file_size_bytes: parsedData.fileSize,
+          rows: parsedData.rowCount,
+          sheet_name: sheetName,
+        });
+      } else {
+        throw new Error("Upload completed but no spreadsheet URL returned");
+      }
+    } catch (err: any) {
+      console.error("Upload error:", err);
+      setError(
+        err.message || "Failed to upload to Google Sheets. Please try again."
+      );
       setState("error");
     }
   };
@@ -267,6 +345,18 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
             </div>
           ) : state === "converting" ? (
             <p className="text-lg text-gray-700">Uploading to Google Sheets...</p>
+          ) : state === "done" && spreadsheetUrl ? (
+            <div className="text-center">
+              <p className="text-lg text-green-700 mb-4">Upload complete!</p>
+              <a
+                href={spreadsheetUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+              >
+                Open Google Sheet
+              </a>
+            </div>
           ) : (
             <p className="text-lg text-green-700">Upload complete!</p>
           )}
@@ -344,11 +434,16 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
         {/* Convert Button */}
         {state === "ready" && (
           <div className="text-center mb-6">
+            {!accessToken && (
+              <p className="text-sm text-gray-600 mb-4">
+                You&apos;ll need to authorize access to your Google account to upload the file.
+              </p>
+            )}
             <button
-              onClick={uploadToGoogleSheets}
+              onClick={() => uploadToGoogleSheets()}
               className="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-4 rounded-lg text-lg transition-colors"
             >
-              Upload to Google Sheets
+              {accessToken ? "Upload to Google Sheets" : "Authorize & Upload to Google Sheets"}
             </button>
           </div>
         )}
