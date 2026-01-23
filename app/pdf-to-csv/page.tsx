@@ -212,8 +212,19 @@ export default function PDFToCSVPage() {
           PDF to CSV Converter
         </h1>
         <p className="text-center text-gray-600 mb-6 max-w-2xl mx-auto">
-          Extract tabular data from PDF files and convert to CSV format instantly. Perfect for data extraction and analysis. All processing happens in your browser.
+          Convert PDF tables to CSV in seconds. Upload a PDF, preview rows, choose your delimiter, and download CSV instantly. Free and private.
         </p>
+
+        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-3">
+            How to convert PDF to CSV
+          </h2>
+          <ol className="list-decimal list-inside text-gray-700 space-y-1">
+            <li>Upload a PDF with selectable text and table data.</li>
+            <li>Review the preview and pick your CSV delimiter.</li>
+            <li>Click convert to download your CSV file.</li>
+          </ol>
+        </div>
 
         {/* File Limits Info */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
@@ -462,6 +473,50 @@ export default function PDFToCSVPage() {
             </p>
           </section>
         </div>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "How do I convert PDF to CSV?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Upload a PDF with selectable text, review the preview, choose a delimiter, and click convert to download CSV.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Can you extract tables from scanned PDFs?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Scanned PDFs often do not have selectable text. For best results, use a PDF with extractable text.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Is this PDF to CSV converter free?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. The converter is free to use and runs in your browser.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Do you upload or store my PDF file?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "No. Files are processed locally in your browser and are not stored.",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
       </div>
     </div>
   );

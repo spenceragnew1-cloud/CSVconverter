@@ -167,6 +167,50 @@ export default function FAQPage() {
             </Link>
           </p>
         </div>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "How do I convert CSV to Excel?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Open the converter, upload your CSV, review the preview, and click convert to download the XLSX file.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Why does Excel open CSV wrong?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Excel can misinterpret delimiters or encoding. Converting to XLSX preserves the correct structure and characters.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Does this tool upload my file?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "No. All processing happens in your browser and files are not uploaded or stored.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "What are the file size and row limits?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "The converter supports files up to 10MB and 50,000 rows.",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
       </div>
     </div>
   );

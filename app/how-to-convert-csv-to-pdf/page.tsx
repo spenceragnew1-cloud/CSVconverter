@@ -189,6 +189,42 @@ export default function HowToConvertCSVToPDFPage() {
               .
             </p>
           </div>
+
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: [
+                  {
+                    "@type": "Question",
+                    name: "How do I convert CSV to PDF?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Upload your CSV, choose page size and orientation, then click convert to download a PDF.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Which page size should I use?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Use A4 for international standard sizing or Letter for US/Canada. Choose landscape for wide tables.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Does this converter upload my CSV file?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "No. The conversion runs in your browser and files are not uploaded or stored.",
+                    },
+                  },
+                ],
+              }),
+            }}
+          />
         </div>
       </div>
     </div>

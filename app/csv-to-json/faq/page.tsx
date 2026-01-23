@@ -188,6 +188,50 @@ export default function FAQPage() {
             </Link>
           </p>
         </div>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "How do I convert CSV to JSON?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Open the converter, upload your CSV, choose your JSON format, and click convert to download the JSON file.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "What is the difference between array of objects and array of arrays?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Array of objects uses column headers as keys, while array of arrays preserves the original CSV rows as nested arrays.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Does this tool upload my file?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "No. All processing happens in your browser and files are not uploaded or stored.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "What are the file size and row limits?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "The converter supports files up to 10MB and 50,000 rows.",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
       </div>
     </div>
   );

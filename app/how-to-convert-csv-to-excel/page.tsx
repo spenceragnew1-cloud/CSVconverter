@@ -173,6 +173,42 @@ export default function HowToConvertCSVToExcelPage() {
               .
             </p>
           </div>
+
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: [
+                  {
+                    "@type": "Question",
+                    name: "How do I convert CSV to Excel?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Upload your CSV, review the preview, and click convert to download an XLSX file.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Why does Excel open CSV with the wrong delimiter?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "CSV files can use commas, semicolons, or tabs. Converting to XLSX avoids delimiter misinterpretation.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Does this converter upload my CSV file?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "No. The conversion runs in your browser and files are not uploaded or stored.",
+                    },
+                  },
+                ],
+              }),
+            }}
+          />
         </div>
       </div>
     </div>

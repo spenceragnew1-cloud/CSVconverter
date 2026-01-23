@@ -321,8 +321,19 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
           CSV to PDF Converter
         </h1>
         <p className="text-center text-gray-600 mb-6 max-w-2xl mx-auto">
-          Convert CSV files to PDF format instantly. Perfect for sharing, printing, and archiving your data. All processing happens in your browser.
+          Convert CSV to PDF instantly in your browser. Choose page size and orientation, preview rows, and download a clean PDF. Free and private.
         </p>
+
+        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-3">
+            How to convert CSV to PDF
+          </h2>
+          <ol className="list-decimal list-inside text-gray-700 space-y-1">
+            <li>Upload your CSV file using drag-and-drop or browse.</li>
+            <li>Select page size, orientation, and header options.</li>
+            <li>Click convert to download your PDF file.</li>
+          </ol>
+        </div>
 
         {/* File Limits Info */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
@@ -644,6 +655,50 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
             </p>
           </section>
         </div>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "How do I convert CSV to PDF?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Upload your CSV, choose page size and orientation, and click convert to download the PDF.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Can I choose page size and orientation?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. You can select A4 or Letter and switch between portrait and landscape.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Is this CSV to PDF converter free?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. The converter is free to use and runs in your browser.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Do you upload or store my CSV file?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "No. Files are processed locally in your browser and are not stored.",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
       </div>
     </div>
   );

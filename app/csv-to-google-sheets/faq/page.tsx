@@ -163,6 +163,50 @@ export default function FAQPage() {
             </Link>
           </p>
         </div>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "How do I import CSV to Google Sheets?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Open the converter, upload your CSV, review the preview, authorize Google Sheets, and click upload to create your spreadsheet.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Is my data secure?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. The file is processed in your browser and only sent to Google Sheets after you authorize the connection. Files are not stored.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "What permissions are required?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "The converter requests permission to create and edit Google Sheets in your account so it can create a new spreadsheet.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "What are the file size and row limits?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "The in-browser converter supports files up to 10MB and 50,000 rows.",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
       </div>
     </div>
   );

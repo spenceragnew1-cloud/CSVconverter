@@ -1,24 +1,24 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "PDF to CSV Converter – Fast & Private",
+  title: "PDF to CSV Converter – Free Online, No Signup",
   description:
-    "Extract tabular data from PDF files and convert to CSV format instantly in your browser. No uploads. Perfect for data extraction and analysis. Free and private.",
+    "Extract tables from PDF and convert to CSV in seconds. Upload a PDF, preview rows, and download CSV. Free, online, and private.",
   alternates: {
     canonical: "https://formatmyfiles.com/pdf-to-csv",
   },
   openGraph: {
-    title: "PDF to CSV Converter – Fast & Private",
+    title: "PDF to CSV Converter – Free Online, No Signup",
     description:
-      "Extract tabular data from PDF files and convert to CSV format instantly in your browser. No uploads. Perfect for data extraction and analysis.",
+      "Extract tables from PDF and convert to CSV in seconds. Upload a PDF, preview rows, and download CSV.",
     type: "website",
     url: "https://formatmyfiles.com/pdf-to-csv",
   },
   twitter: {
     card: "summary",
-    title: "PDF to CSV Converter – Fast & Private",
+    title: "PDF to CSV Converter – Free Online, No Signup",
     description:
-      "Extract tabular data from PDF files and convert to CSV format instantly in your browser. No uploads. Perfect for data extraction and analysis.",
+      "Extract tables from PDF and convert to CSV in seconds. Upload a PDF, preview rows, and download CSV.",
   },
 };
 

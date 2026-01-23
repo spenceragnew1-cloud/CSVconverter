@@ -164,6 +164,50 @@ export default function FAQPage() {
             </Link>
           </p>
         </div>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "How do I convert CSV to PDF?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Open the converter, upload your CSV, choose page size and orientation, and click convert to download the PDF.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Does this tool upload my file?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "No. All processing happens in your browser and files are not uploaded or stored.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Which page size should I choose?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Choose A4 for international standard sizes or Letter for US/Canada. Use landscape for wide tables.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "What are the file size and row limits?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "The converter supports files up to 10MB and 50,000 rows.",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
       </div>
     </div>
   );

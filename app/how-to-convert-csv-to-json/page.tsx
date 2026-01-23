@@ -198,6 +198,42 @@ export default function HowToConvertCSVToJSONPage() {
               .
             </p>
           </div>
+
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: [
+                  {
+                    "@type": "Question",
+                    name: "How do I convert CSV to JSON?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Upload your CSV, choose objects or arrays, and click convert to download the JSON file.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "What JSON format should I choose?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Use array of objects for APIs and databases. Use array of arrays for raw data processing.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Does this converter upload my CSV file?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "No. The conversion runs in your browser and files are not uploaded or stored.",
+                    },
+                  },
+                ],
+              }),
+            }}
+          />
         </div>
       </div>
     </div>

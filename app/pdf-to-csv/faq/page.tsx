@@ -170,6 +170,50 @@ export default function FAQPage() {
             </Link>
           </p>
         </div>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "How do I convert PDF to CSV?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Open the converter, upload your PDF, review the preview, choose a delimiter, and click convert to download CSV.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "What types of PDFs work best?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Text-based PDFs with clear tables and consistent formatting provide the best results. Scanned PDFs may require OCR.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Can I extract data from scanned PDFs?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Scanned PDFs typically do not have selectable text. Use a text-based PDF for reliable extraction.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Does this tool upload my file?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "No. Processing happens in your browser and files are not uploaded or stored.",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
       </div>
     </div>
   );

@@ -2,24 +2,24 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "CSV to Excel Online Converter – Free & Secure",
+  title: "CSV to Excel Online Converter – Free, No Signup",
   description:
-    "Convert CSV files to Excel online. Preview rows, auto-detect delimiters, and download XLSX instantly.",
+    "Convert CSV to Excel online in seconds. Preview rows, auto-detect delimiters, and download XLSX instantly. Free and private.",
   alternates: {
     canonical: "https://formatmyfiles.com/csv-to-excel-online",
   },
   openGraph: {
-    title: "CSV to Excel Online Converter – Free & Secure",
+    title: "CSV to Excel Online Converter – Free, No Signup",
     description:
-      "Convert CSV files to Excel online. Preview rows, auto-detect delimiters, and download XLSX instantly.",
+      "Convert CSV to Excel online in seconds. Preview rows, auto-detect delimiters, and download XLSX instantly.",
     type: "website",
     url: "https://formatmyfiles.com/csv-to-excel-online",
   },
   twitter: {
     card: "summary",
-    title: "CSV to Excel Online Converter – Free & Secure",
+    title: "CSV to Excel Online Converter – Free, No Signup",
     description:
-      "Convert CSV files to Excel online. Preview rows, auto-detect delimiters, and download XLSX instantly.",
+      "Convert CSV to Excel online in seconds. Preview rows, auto-detect delimiters, and download XLSX instantly.",
   },
 };
 

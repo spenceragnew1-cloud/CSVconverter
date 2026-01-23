@@ -291,8 +291,19 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
           CSV to Google Sheets Converter
         </h1>
         <p className="text-center text-gray-600 mb-6 max-w-2xl mx-auto">
-          Import CSV files directly into Google Sheets for collaboration and analysis. Share and collaborate on your data instantly. All processing happens in your browser.
+          Convert CSV to Google Sheets in seconds. Upload a CSV, authorize Sheets, and import instantly. Free, online, and your file stays in your browser.
         </p>
+
+        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-3">
+            How to convert CSV to Google Sheets
+          </h2>
+          <ol className="list-decimal list-inside text-gray-700 space-y-1">
+            <li>Upload your CSV file using drag-and-drop or the browse button.</li>
+            <li>Review the preview and set your sheet name and options.</li>
+            <li>Authorize Google Sheets and click upload to create your sheet.</li>
+          </ol>
+        </div>
 
         {/* File Limits Info */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
@@ -620,6 +631,50 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
             </p>
           </section>
         </div>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "How do I convert CSV to Google Sheets?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Upload your CSV, review the preview, authorize Google Sheets, and click upload to create your spreadsheet.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Is this CSV to Google Sheets converter free?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. The converter is free to use and runs in your browser.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Do you upload or store my CSV file?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Your CSV is processed in your browser. Data is only sent to Google Sheets after you authorize the connection, and files are not stored.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Why can’t I import a large CSV file?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "The tool supports files up to 10MB and 50,000 rows. Larger files may need to be split before importing.",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
       </div>
     </div>
   );

@@ -2,24 +2,24 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "CSV to XLSX Converter – Convert CSV Files to Excel Format",
+  title: "CSV to XLSX Converter – Free Online, No Signup",
   description:
-    "Convert CSV files to XLSX format for Excel. Fix formatting issues and download a clean spreadsheet instantly.",
+    "Convert CSV to XLSX for Excel online. Fix formatting issues and download a clean spreadsheet instantly. Free and private.",
   alternates: {
     canonical: "https://formatmyfiles.com/csv-to-xlsx",
   },
   openGraph: {
-    title: "CSV to XLSX Converter – Convert CSV Files to Excel Format",
+    title: "CSV to XLSX Converter – Free Online, No Signup",
     description:
-      "Convert CSV files to XLSX format for Excel. Fix formatting issues and download a clean spreadsheet instantly.",
+      "Convert CSV to XLSX for Excel online. Fix formatting issues and download a clean spreadsheet instantly.",
     type: "website",
     url: "https://formatmyfiles.com/csv-to-xlsx",
   },
   twitter: {
     card: "summary",
-    title: "CSV to XLSX Converter – Convert CSV Files to Excel Format",
+    title: "CSV to XLSX Converter – Free Online, No Signup",
     description:
-      "Convert CSV files to XLSX format for Excel. Fix formatting issues and download a clean spreadsheet instantly.",
+      "Convert CSV to XLSX for Excel online. Fix formatting issues and download a clean spreadsheet instantly.",
   },
 };
 

@@ -192,6 +192,42 @@ export default function HowToConvertPDFToCSVPage() {
               .
             </p>
           </div>
+
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: [
+                  {
+                    "@type": "Question",
+                    name: "How do I convert PDF to CSV?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Upload a text-based PDF, review the preview, choose a delimiter, and click convert to download CSV.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Can I convert scanned PDFs?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Scanned PDFs usually need OCR. For best results, use a PDF with selectable text.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Does this converter upload my PDF?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "No. The conversion runs in your browser and files are not uploaded or stored.",
+                    },
+                  },
+                ],
+              }),
+            }}
+          />
         </div>
       </div>
     </div>

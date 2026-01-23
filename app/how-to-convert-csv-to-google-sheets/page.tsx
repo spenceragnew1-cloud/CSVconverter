@@ -205,6 +205,42 @@ export default function HowToConvertCSVToGoogleSheetsPage() {
               .
             </p>
           </div>
+
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                mainEntity: [
+                  {
+                    "@type": "Question",
+                    name: "What is the fastest way to convert CSV to Google Sheets?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "Use the browser-based converter: upload a CSV, review the preview, authorize Google Sheets, and upload to create a new sheet.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Do I need to install software to import CSV to Google Sheets?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "No. The conversion runs in your browser and does not require any software installation.",
+                    },
+                  },
+                  {
+                    "@type": "Question",
+                    name: "Do you store my CSV file?",
+                    acceptedAnswer: {
+                      "@type": "Answer",
+                      text: "No. Files are processed in your browser and only sent to Google Sheets after authorization.",
+                    },
+                  },
+                ],
+              }),
+            }}
+          />
         </div>
       </div>
     </div>

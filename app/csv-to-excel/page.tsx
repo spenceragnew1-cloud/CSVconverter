@@ -228,6 +228,20 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
         <h1 className="text-4xl font-bold text-gray-900 mb-4 text-center">
           CSV to Excel Converter
         </h1>
+        <p className="text-center text-gray-600 mb-6 max-w-2xl mx-auto">
+          Convert CSV to Excel (.xlsx) instantly in your browser. Preview rows, detect delimiters, and download a clean Excel file. Free and private.
+        </p>
+
+        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-3">
+            How to convert CSV to Excel
+          </h2>
+          <ol className="list-decimal list-inside text-gray-700 space-y-1">
+            <li>Upload your CSV file using drag-and-drop or browse.</li>
+            <li>Review the preview and confirm header and delimiter options.</li>
+            <li>Click convert to download your XLSX file.</li>
+          </ol>
+        </div>
 
         {/* File Limits Info */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
@@ -416,6 +430,50 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
             don&apos;t upload or store files.
           </p>
         </div>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "How do I convert CSV to Excel?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Upload your CSV, review the preview, and click convert to download an XLSX file.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Will the converter keep headers and formatting?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Header rows are preserved when enabled. The output is a clean XLSX file for Excel.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Is this CSV to Excel converter free?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. The converter is free to use and runs in your browser.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Do you upload or store my CSV file?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "No. Files are processed locally in your browser and are not stored.",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
       </div>
     </div>
   );

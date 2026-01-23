@@ -2,24 +2,24 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Convert CSV to Excel Online (XLSX) – Fast & Private",
+  title: "Convert CSV to Excel Online (XLSX) – Free, No Signup",
   description:
-    "Convert CSV files to Excel (.xlsx) instantly in your browser. No uploads, no signup, private and secure.",
+    "Convert CSV to Excel (.xlsx) online in seconds. Fast, private, and secure with no signup required.",
   alternates: {
     canonical: "https://formatmyfiles.com/convert-csv-to-excel",
   },
   openGraph: {
-    title: "Convert CSV to Excel Online (XLSX) – Fast & Private",
+    title: "Convert CSV to Excel Online (XLSX) – Free, No Signup",
     description:
-      "Convert CSV files to Excel (.xlsx) instantly in your browser. No uploads, no signup, private and secure.",
+      "Convert CSV to Excel (.xlsx) online in seconds. Fast, private, and secure with no signup required.",
     type: "website",
     url: "https://formatmyfiles.com/convert-csv-to-excel",
   },
   twitter: {
     card: "summary",
-    title: "Convert CSV to Excel Online (XLSX) – Fast & Private",
+    title: "Convert CSV to Excel Online (XLSX) – Free, No Signup",
     description:
-      "Convert CSV files to Excel (.xlsx) instantly in your browser. No uploads, no signup, private and secure.",
+      "Convert CSV to Excel (.xlsx) online in seconds. Fast, private, and secure with no signup required.",
   },
 };
 

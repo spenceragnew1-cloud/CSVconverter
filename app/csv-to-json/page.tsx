@@ -240,8 +240,19 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
           CSV to JSON Converter
         </h1>
         <p className="text-center text-gray-600 mb-6 max-w-2xl mx-auto">
-          Convert CSV files to JSON format instantly. Perfect for APIs, web applications, and data processing. All processing happens in your browser.
+          Convert CSV to JSON instantly in your browser. Choose objects or arrays, preview rows, and download JSON fast. Free and private.
         </p>
+
+        <div className="bg-white rounded-lg border border-gray-200 p-6 mb-6">
+          <h2 className="text-lg font-semibold text-gray-900 mb-3">
+            How to convert CSV to JSON
+          </h2>
+          <ol className="list-decimal list-inside text-gray-700 space-y-1">
+            <li>Upload your CSV file or try the sample file.</li>
+            <li>Choose JSON format options and preview the data.</li>
+            <li>Click convert to download a clean JSON file.</li>
+          </ol>
+        </div>
 
         {/* File Limits Info */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
@@ -559,6 +570,50 @@ Charlie Brown,32,Phoenix,charlie@example.com`;
             </p>
           </section>
         </div>
+
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: [
+                {
+                  "@type": "Question",
+                  name: "How do I convert CSV to JSON?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Upload your CSV, choose JSON format options, and click convert to download the JSON file.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Can I export JSON as objects or arrays?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. You can choose objects (using headers) or arrays depending on your needs.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Is this CSV to JSON converter free?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "Yes. The converter is free to use and runs in your browser.",
+                  },
+                },
+                {
+                  "@type": "Question",
+                  name: "Do you upload or store my CSV file?",
+                  acceptedAnswer: {
+                    "@type": "Answer",
+                    text: "No. The conversion happens locally in your browser and files are not stored.",
+                  },
+                },
+              ],
+            }),
+          }}
+        />
       </div>
     </div>
   );
