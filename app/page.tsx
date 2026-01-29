@@ -1,4 +1,24 @@
 import Link from "next/link";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "CSV to Excel Converter – Fast & Private",
+  description: "Convert CSV to Excel (.xlsx) instantly in your browser. No uploads. Free and private.",
+  alternates: {
+    canonical: "https://formatmyfiles.com",
+  },
+  openGraph: {
+    title: "CSV to Excel Converter – Fast & Private",
+    description: "Convert CSV to Excel (.xlsx) instantly in your browser. No uploads. Free and private.",
+    type: "website",
+    url: "https://formatmyfiles.com",
+  },
+  twitter: {
+    card: "summary",
+    title: "CSV to Excel Converter – Fast & Private",
+    description: "Convert CSV to Excel (.xlsx) instantly in your browser. No uploads. Free and private.",
+  },
+};
 
 export default function Home() {
   return (
